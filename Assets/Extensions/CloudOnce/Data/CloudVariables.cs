@@ -13,5 +13,28 @@ namespace CloudOnce
     /// </summary>
     public static class CloudVariables
     {
+        private static readonly CloudInt s_highScore = new CloudInt("HighScore", PersistenceType.Highest, 0);
+
+        public static int HighScore
+        {
+            get { return s_highScore.Value; }
+            set { s_highScore.Value = value; }
+        }
+
+        private static readonly CloudCurrencyInt s_coins = new CloudCurrencyInt("Coins", 0, false);
+
+        public static int Coins
+        {
+            get { return s_coins.Value; }
+            set { s_coins.Value = value; }
+        }
+
+        private static readonly CloudInt s_supership = new CloudInt("Supership", PersistenceType.Highest, 0);
+
+        public static int Supership
+        {
+            get { return s_supership.Value; }
+            set { s_supership.Value = value; }
+        }
     }
 }

@@ -191,6 +191,7 @@ MonoBehaviour:
   moveDir: {x: -1, y: 0}
   fx: {fileID: 1528566280509204, guid: a3ac2d2b1ce9d90498cc0875520e5a95, type: 3}
   Ship: {fileID: 0}
+  isOutOfScreen: 0
   pauseMenu: {fileID: 0}
 --- !u!114 &3984749215881226720
 MonoBehaviour:
@@ -209,7 +210,7 @@ MonoBehaviour:
   shootPlace:
   - {fileID: 8136345194365488021}
   - {fileID: 7989140492344577694}
-  shootDelay: 0.5
+  shootDelay: 0.65
   isEnemyDead: 0
   ship: {fileID: 0}
   sm: {fileID: 0}
@@ -217,6 +218,7 @@ MonoBehaviour:
   bulletsPlaceHolder: {fileID: 0}
   isBoss: 1
   fxExplo: {fileID: 2089800160, guid: 9b6784e59879b814b82fbd56244885ee, type: 3}
+  countExBosses: -1
 --- !u!114 &4638942898057490669
 MonoBehaviour:
   m_ObjectHideFlags: 0

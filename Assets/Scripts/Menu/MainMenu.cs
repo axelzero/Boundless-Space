@@ -7,6 +7,8 @@ using CloudOnce;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject Login;
+
     public int hs;
     [HideInInspector]
     public int coins;
@@ -79,42 +81,90 @@ public class MainMenu : MonoBehaviour
 
     public GameObject HelpAd;
 
+    private bool isSuperShipChaked = false;
+
+
+    [Space(20)]
+    [Header("LogIn")]
+    public GameObject logInPanel;
+    public GameObject errorMes;
 
     public void CloudOnceInitializeComplete()
     {
         Cloud.OnInitializeComplete -= CloudOnceInitializeComplete;
         Debug.LogWarning("Initialized");
+        //load data
+        Cloud.Storage.Load();
+        
+    }
+
+    void CloudOnceLoadComplete(bool success)
+    {
+        UpdateUI();
+        PlayerPrefs.SetInt("coins", CloudVariables.Coins);
+        PlayerPrefs.SetInt("HS", CloudVariables.HighScore);
+        PlayerPrefs.SetInt("Ship4", CloudVariables.Supership);
+        logInPanel.SetActive(false);
+    }
+
+    private void UpdateUI()
+    {
+        try
+        {
+            txtCoins.text = CloudVariables.Coins.ToString();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log(ex);
+        }
+        
+        txtHs.text = "HIGHT SCORE: " + CloudVariables.HighScore.ToString();
+    }
+
+    private void Save()
+    {
+        Cloud.Storage.Save();
+    }
+
+    public void BtnContinueErrorLogIn()
+    {
+        logInPanel.SetActive(false);
     }
 
     private void Awake()
     {
         //PlayerPrefs.DeleteAll();
-
+        Login.SetActive(true);
+    }
+    void Start()
+    {
         try
         {
             Cloud.OnInitializeComplete += CloudOnceInitializeComplete;
-            Cloud.Initialize(false, true);
+            Cloud.OnCloudLoadComplete += CloudOnceLoadComplete;
+            Cloud.Initialize(true, true);
             Leaderboards.HightScore.SubmitScore(PlayerPrefs.GetInt("HS"));
             Leaderboards.Richestman.SubmitScore(PlayerPrefs.GetInt("coins"));
         }
         catch (System.Exception ex)
         {
+            errorMes.SetActive(true);
             Debug.Log("Login error: " + ex);
         }
 
         txtCoins.text = PlayerPrefs.GetInt("coins").ToString();
         hs = PlayerPrefs.GetInt("HS", 0);
         txtHs.text = "HIGHT SCORE: " + hs.ToString();
-    }
-    void Start()
-    {
+
+        if (Cloud.IsSignedIn == true)
+        {
+            logInPanel.SetActive(false);
+        }
         posBtnMoney = btnHangar[2].transform.position;
 
         mainMenu = this;
 
         StartCheakAd();
-
-        
 
         shipNum = PlayerPrefs.GetInt("ship", 0);
 
@@ -136,7 +186,7 @@ public class MainMenu : MonoBehaviour
 
         
         //PlayerPrefs.SetInt("coins", 20000);////////////////////////////////////////////////////////////////////////////////////////////////////
-        coins = PlayerPrefs.GetInt("coins", 0);
+        coins = PlayerPrefs.GetInt("coins");
 
         if (PlayerPrefs.GetInt("Ship2") == 1)
         {
@@ -290,7 +340,23 @@ public class MainMenu : MonoBehaviour
 
         RateApp();
     }
-    
+
+    private void Update()
+    {
+        if (PlayerPrefs.GetInt("Ship4") == 1 && isSuperShipChaked == false)
+        {
+            shipUnlock[3] = true;
+            btnHangar[2].transform.position = new Vector2(-3, -203);
+            dollar.SetActive(false);
+            txtPrices[3].text = "FREE";
+            WeaponSpeedUp[3].SetActive(true);
+            WeaponSpeedUp[7].SetActive(true);
+            WeaponSpeedUp[11].SetActive(true);
+            WeaponSpeedUp[15].SetActive(true);
+            isSuperShipChaked = true;
+            btnHangar[2].SetActive(false);
+        }
+    }
 
     private void CheakOnMaxValueSpeedWeapon()  // Ограничения по покупкам
     {
@@ -532,9 +598,10 @@ public class MainMenu : MonoBehaviour
                 {
                     if (PlayerPrefs.GetInt("coins", 0) >= intPrices[1])
                     {
-                        coins = PlayerPrefs.GetInt("coins", 0);
+                        coins = PlayerPrefs.GetInt("coins");
                         coins -= intPrices[1];
                         PlayerPrefs.SetInt("coins", coins);
+                        CloudVariables.Coins = coins;
                         shipUnlock[1] = true;
                         PlayerPrefs.SetInt("Ship2", 1);  //сохраняем, что самолет 2 куплен
                         ChangeShip(1);
@@ -553,9 +620,10 @@ public class MainMenu : MonoBehaviour
                 {
                     if (PlayerPrefs.GetInt("coins", 0) >= intPrices[2])
                     {
-                        coins = PlayerPrefs.GetInt("coins", 0);
+                        coins = PlayerPrefs.GetInt("coins");
                         coins -= intPrices[2];
                         PlayerPrefs.SetInt("coins", coins);
+                        CloudVariables.Coins = coins;
                         shipUnlock[2] = true;
                         PlayerPrefs.SetInt("Ship3", 1);  //сохраняем, что самолет 3 куплен
                         ChangeShip(2);
@@ -579,6 +647,8 @@ public class MainMenu : MonoBehaviour
         txtCoins.text = PlayerPrefs.GetInt("coins").ToString();
         hs = PlayerPrefs.GetInt("HS", 0);
         txtHs.text = "HIGHT SCORE: " + hs.ToString();
+
+        Save();
     }
 
     public void BtnGameMode()
@@ -660,6 +730,8 @@ public class MainMenu : MonoBehaviour
             btnHangar[2].transform.position = posBtnMoney;
             shipUnlock[3] = true;
             PlayerPrefs.SetInt("Ship4", 1);  //сохраняем, что самолет 4 куплен
+            CloudVariables.Supership = 1;
+            Save();
             ChangeShip(3);
             dollar.SetActive(false);
             txtPrices[3].text = "FREE";
@@ -725,7 +797,7 @@ public class MainMenu : MonoBehaviour
                 break;
         }
 
-        if (PlayerPrefs.GetInt("coins", 0) >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
+        if (PlayerPrefs.GetInt("coins") >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
         {
             Debug.Log("Click");
             
@@ -766,9 +838,11 @@ public class MainMenu : MonoBehaviour
                 // SpeedUp
             }
 
-            int coins = PlayerPrefs.GetInt("coins");
-            coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
-            PlayerPrefs.SetInt("coins", coins);
+            int _coins = PlayerPrefs.GetInt("coins");
+            _coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
+            PlayerPrefs.SetInt("coins", _coins);
+            CloudVariables.Coins = _coins;
+            Save();
             txtCoins.text = coins.ToString();
             PlayerPrefs.SetInt(nameShipPlayerPrefs, PlayerPrefs.GetInt(nameShipPlayerPrefs) + 100);
 
@@ -783,6 +857,7 @@ public class MainMenu : MonoBehaviour
         txtCoins.text = PlayerPrefs.GetInt("coins").ToString();
         hs = PlayerPrefs.GetInt("HS", 0);
         txtHs.text = "HIGHT SCORE: " + hs.ToString();
+        
     }
 
     public void BtnShieldUp(string nameShipPlayerPrefs)  //Покупка улучшения щита
@@ -809,7 +884,7 @@ public class MainMenu : MonoBehaviour
                 break;
         }
 
-        if (PlayerPrefs.GetInt("coins", 0) >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
+        if (PlayerPrefs.GetInt("coins") >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
         {
             Debug.Log("Click");
 
@@ -864,10 +939,12 @@ public class MainMenu : MonoBehaviour
                     break;
             }
 
-            int coins = PlayerPrefs.GetInt("coins");
-            coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
-            PlayerPrefs.SetInt("coins", coins);
-            txtCoins.text = coins.ToString();
+            int _coins = PlayerPrefs.GetInt("coins");
+            _coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
+            PlayerPrefs.SetInt("coins", _coins);
+            CloudVariables.Coins = _coins;
+            Save();
+            txtCoins.text = _coins.ToString();
             PlayerPrefs.SetInt(nameShipPlayerPrefs, PlayerPrefs.GetInt(nameShipPlayerPrefs) + 100);
 
             costOfShieldPrice[numShip2].text = PlayerPrefs.GetInt(nameShipPlayerPrefs).ToString();
@@ -908,7 +985,7 @@ public class MainMenu : MonoBehaviour
                 break;
         }
 
-        if (PlayerPrefs.GetInt("coins", 0) >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
+        if (PlayerPrefs.GetInt("coins") >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
         {
             Debug.Log("Click");
 
@@ -963,10 +1040,12 @@ public class MainMenu : MonoBehaviour
                     break;
             }
 
-            int coins = PlayerPrefs.GetInt("coins");
-            coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
-            PlayerPrefs.SetInt("coins", coins);
-            txtCoins.text = coins.ToString();
+            int _coins = PlayerPrefs.GetInt("coins");
+            _coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
+            PlayerPrefs.SetInt("coins", _coins);
+            CloudVariables.Coins = _coins;
+            Save();
+            txtCoins.text = _coins.ToString();
             PlayerPrefs.SetInt(nameShipPlayerPrefs, PlayerPrefs.GetInt(nameShipPlayerPrefs) + 100);
 
             costOfHPPrice[numShip2].text = PlayerPrefs.GetInt(nameShipPlayerPrefs).ToString();
@@ -1006,7 +1085,7 @@ public class MainMenu : MonoBehaviour
                 break;
         }
 
-        if (PlayerPrefs.GetInt("coins", 0) >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
+        if (PlayerPrefs.GetInt("coins") >= PlayerPrefs.GetInt(nameShipPlayerPrefs))
         {
             Debug.Log("Click ROCKET");
 
@@ -1053,10 +1132,12 @@ public class MainMenu : MonoBehaviour
                     break;
             }
 
-            int coins = PlayerPrefs.GetInt("coins");
-            coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
-            PlayerPrefs.SetInt("coins", coins);
-            txtCoins.text = coins.ToString();
+            int _coins = PlayerPrefs.GetInt("coins");
+            _coins -= PlayerPrefs.GetInt(nameShipPlayerPrefs);
+            PlayerPrefs.SetInt("coins", _coins);
+            CloudVariables.Coins = _coins;
+            Save();
+            txtCoins.text = _coins.ToString();
             PlayerPrefs.SetInt(nameShipPlayerPrefs, PlayerPrefs.GetInt(nameShipPlayerPrefs) + 100);
 
             costOfRocket[numShip3].text = PlayerPrefs.GetInt(nameShipPlayerPrefs).ToString();

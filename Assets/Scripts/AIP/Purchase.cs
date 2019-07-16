@@ -45,7 +45,9 @@ public class Purchase : MonoBehaviour
         PlayerPrefs.SetInt("coins", coin);
         MainMenu.mainMenu.txtCoins.text = coin.ToString();
         Achievements.Get20000coins.Unlock();
-       // AchivsCommands.GetTheAchiv(Achivs.Get20000Coins);
+        CloudVariables.Coins += 20000;
+        Cloud.Storage.Save();
+        // AchivsCommands.GetTheAchiv(Achivs.Get20000Coins);
     }
 
     public void BuyFailedGetCoinsNew(UnityEngine.Purchasing.Product product, UnityEngine.Purchasing.PurchaseFailureReason failureReason)
@@ -57,6 +59,9 @@ public class Purchase : MonoBehaviour
     {
         MainMenu.mainMenu.btnHangar[2].transform.position = MainMenu.mainMenu.posBtnMoney;
         PlayerPrefs.SetInt("Ship4", 1);  //сохраняем, что самолет 4 куплен
+        CloudVariables.Supership = 1;
+        Cloud.Storage.Save();
+        Debug.Log(CloudVariables.Supership + "!!!!!!!!!!!!!!!!!!!!!!!");
         MainMenu.mainMenu.shipUnlock[3] = true;
         MainMenu.mainMenu.ChangeShip(3);
         MainMenu.mainMenu.dollar.SetActive(false);

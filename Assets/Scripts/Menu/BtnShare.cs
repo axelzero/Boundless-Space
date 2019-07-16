@@ -41,6 +41,6 @@ public class BtnShare : MonoBehaviour
         string filePath = Path.Combine(Application.temporaryCachePath, "shared img.png");
         File.WriteAllBytes(filePath, image.EncodeToPNG());
 
-        new NativeShare().AddFile(filePath).SetSubject("Boundless Space \nDownload this game").SetText("https://play.google.com/store/apps/details?id=com.BigStudent.WhiteSpace").Share();
+        new NativeShare().AddFile(filePath).SetSubject("Boundless Space \nDownload this game").SetText("https://play.google.com/store/apps/details?id=com.BigStudent.BoundlessSpace").Share();
     }
 }

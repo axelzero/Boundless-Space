@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour {
 
     public GameObject sfx;
     public AudioClip[] audioClips;
+
+    public Slider soundSlider;
 
     public void PlaySound(int soundNum)
     {
@@ -13,6 +16,7 @@ public class SoundManager : MonoBehaviour {
         AudioSource soundSource = instGO.GetComponent<AudioSource>();
         instGO.transform.SetParent(GameObject.Find("EnemyBullets").transform);
         soundSource.clip = audioClips[soundNum];
+        soundSource.volume = soundSlider.value;
         soundSource.Play();
         Destroy(instGO, audioClips[soundNum].length);
     }

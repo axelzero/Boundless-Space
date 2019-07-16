@@ -384,11 +384,8 @@ D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.An
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.StandardEvents.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.Tracker.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.CollabProxy.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Locator.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEditor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEngine.AccessibilityModule.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEngine.Advertisements.dll
@@ -663,8 +660,6 @@ D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.X
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.Xml.XmlSerializer.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.Xml.XPath.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.Xml.XPath.XDocument.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.PackageManagerUI.Editor.pdb
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.CollabProxy.Editor.pdb
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.pdb
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.DataPrivacy.pdb
+D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEditor.Purchasing.dll

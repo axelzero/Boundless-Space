@@ -103,7 +103,29 @@
 			"GoogleID":"CgkIuM6xmOUFEAIQCA"
 		}
 	],
-	"CloudVariables":[],
+	"CloudVariables":[
+		{
+			"Key":"HighScore",
+			"Type":"0",
+			"DefaultValue":"0",
+			"PersistenceType":"1",
+			"AllowNegative":false
+		},
+		{
+			"Key":"Coins",
+			"Type":"1",
+			"DefaultValue":"0",
+			"PersistenceType":"0",
+			"AllowNegative":false
+		},
+		{
+			"Key":"Supership",
+			"Type":"0",
+			"DefaultValue":"0",
+			"PersistenceType":"1",
+			"AllowNegative":false
+		}
+	],
 	"AppleSupported":false,
 	"GoogleSupported":true,
 	"GoogleAppID":"198961817400",

@@ -13,6 +13,8 @@ TagManager:
   - destroyer
   - GameOverPanel
   - Boss
+  - Bonus
+  - ExBoss
   layers:
   - Default
   - TransparentFX
@@ -34,7 +36,7 @@ TagManager:
   - Mine
   - Star
   - Boss
-  - 
+  - ExBoss
   - 
   - 
   - 

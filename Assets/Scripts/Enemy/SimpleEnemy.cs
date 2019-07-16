@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SimpleEnemy : MonoBehaviour
 {
-    //public static SimpleEnemy simpleEnemy;
-
     public int lifePoints;
 
     public GameObject bullet;
@@ -30,7 +28,8 @@ public class SimpleEnemy : MonoBehaviour
     [Header("BOSS")]
     public bool isBoss;
     public GameObject fxExplo;
-
+    [HideInInspector]
+    public int countExBosses = -1;  // для того, что бы отслеживать сколько ексБоссов доступно в DefeatedBossesGeneration
 
     private void Start()
     {
@@ -64,24 +63,45 @@ public class SimpleEnemy : MonoBehaviour
         {
             DestroyEnemy();
         }
+
+        if (Input.GetMouseButtonDown(0) && !isBoss)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (hit && hit.collider.tag == "Enemy")
+            {
+                hit.collider.GetComponent<SimpleEnemy>().Damage(1);
+            }
+        }
     }
 
     void DestroyEnemy()
     {
         isEnemyDead = true;
         sm.PlaySound(0);
-        SpawnCoin();
         if (isBoss)
         {
             GameObject p = Instantiate(fxExplo, transform.position, Quaternion.identity) as GameObject;
             p.GetComponent<ParticleSystem>().Play();
             Destroy(p, p.GetComponent<ParticleSystem>().main.duration);
-
+            SpawnCoin(20);
             ship.AdSc(500);
             RootSpeedLevel.rootSpeedLevel.BossState = RootSpeedLevel.Boss.WaitBoss;
             RootSpeedLevel.rootSpeedLevel.TimerToInstatiateNewBoss *= 2f;
+            sm.PlaySound(0);
+            sm.PlaySound(0);
+            countExBosses++;
+            DefeatedBossesGeneration.defeatedBossesGeneration.countExBoss++;
+            if (DefeatedBossesGeneration.defeatedBossesGeneration.countExBoss >= 5)
+            {
+                DefeatedBossesGeneration.defeatedBossesGeneration.generatorToActive.SetActive(true);
+            }
         }
-        ship.AdSc(25);
+        else
+        {
+            SpawnCoin();
+            ship.AdSc(25);
+        }
         int countKilled = PlayerPrefs.GetInt("EnemyKilled", 0);
         countKilled++;
         PlayerPrefs.SetInt("EnemyKilled", countKilled);
@@ -92,6 +112,15 @@ public class SimpleEnemy : MonoBehaviour
     {
         GameObject c = Instantiate(Coin, transform.position, Quaternion.identity) as GameObject;
         c.transform.SetParent(GameObject.Find("Coins").transform);
+    }
+    void SpawnCoin(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            GameObject c = Instantiate(Coin, transform.position, Quaternion.identity) as GameObject;
+            c.transform.localScale = new Vector3(3f, 3f, 3f);
+            c.transform.SetParent(GameObject.Find("Coins").transform);
+        }
     }
 
     void Shoot()

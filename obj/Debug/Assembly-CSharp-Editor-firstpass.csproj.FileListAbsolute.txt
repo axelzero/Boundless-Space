@@ -24,11 +24,8 @@ D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.An
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.StandardEvents.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.Tracker.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.CollabProxy.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Locator.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.PackageManagerUI.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.Editor.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEditor.Advertisements.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEditor.Android.Extensions.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\UnityEditor.AppleTV.Extensions.dll
@@ -225,9 +222,6 @@ D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\obj\Debug\Assembly-CSha
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\obj\Debug\Assembly-CSharp-Editor-firstpass.csproj.CopyComplete
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\obj\Debug\Assembly-CSharp-Editor-firstpass.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\obj\Debug\Assembly-CSharp-Editor-firstpass.pdb
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Google.IOSResolver_v1.2.64.0.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Google.JarResolver_v1.2.64.0.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Google.VersionHandlerImpl_v1.2.64.0.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Microsoft.CSharp.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Microsoft.Win32.Primitives.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\netstandard.dll
@@ -337,8 +331,8 @@ D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.X
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.Xml.XmlSerializer.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.Xml.XPath.dll
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\System.Xml.XPath.XDocument.dll
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.Editor.pdb
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.PackageManagerUI.Editor.pdb
-D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.CollabProxy.Editor.pdb
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.TextMeshPro.pdb
 D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Unity.Analytics.DataPrivacy.pdb
+D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Google.IOSResolver_v1.2.111.0.dll
+D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Google.JarResolver_v1.2.111.0.dll
+D:\Unity3d\Projects\WithSpace\Boundless-Space\WhiteSpace\Temp\bin\Debug\Google.VersionHandlerImpl_v1.2.111.0.dll

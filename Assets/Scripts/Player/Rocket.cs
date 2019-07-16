@@ -14,6 +14,7 @@ public class Rocket : MonoBehaviour
     {
         sm = GameObject.Find("GameZone").GetComponent<SoundManager>();
         Ship = GameObject.Find("Player");
+        Destroy(gameObject, 6f);
     }
 
     private void OnCollisionEnter2D(Collision2D coll)
@@ -27,6 +28,12 @@ public class Rocket : MonoBehaviour
         else if (coll.gameObject.CompareTag("Boss"))
         {
             coll.gameObject.GetComponent<SimpleEnemy>().Damage(damage);
+            sm.PlaySound(0);
+            Destroy(gameObject);
+        }
+        else if (coll.gameObject.CompareTag("ExBoss"))
+        {
+            coll.gameObject.GetComponent<ExBoss>().Damage(damage);
             sm.PlaySound(0);
             Destroy(gameObject);
         }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CloudOnce;
+using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
@@ -28,6 +29,8 @@ public class RewardedAds : MonoBehaviour
                     btnHide.SetActive(false);
                     int coins = PlayerPrefs.GetInt("coins");
                     coins += 100;
+                    CloudVariables.Coins += 100;
+                    Cloud.Storage.Save();
                     PlayerPrefs.SetInt("coins", coins);
                     coinsTxt.text = coins.ToString();
                 }
